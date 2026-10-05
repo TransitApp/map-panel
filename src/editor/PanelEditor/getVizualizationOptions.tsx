@@ -14,9 +14,11 @@ export function fillOptionsPaneItems(
   optionEditors: PanelOptionsEditorItem[],
   getOptionsPaneCategory: categoryGetter,
   onValueChanged: (path: string, value: any) => void,
-  context: StandardEditorContext<any>
+  // Per item, so items can see different data
+  getContext: (item: PanelOptionsEditorItem) => StandardEditorContext<any>
 ) {
   for (const pluginOption of optionEditors) {
+    const context = getContext(pluginOption);
     if (pluginOption.showIf && !pluginOption.showIf(context.options, context.data)) {
       continue;
     }

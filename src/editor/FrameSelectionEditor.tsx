@@ -8,6 +8,7 @@ import {
   StandardEditorProps,
 } from '@grafana/data';
 import { Select } from '@grafana/ui';
+import { getSelectedRefId } from '../layers/data/utils';
 
 export const FrameSelectionEditor: FC<StandardEditorProps<MatcherConfig>> = ({ value, context, onChange }) => {
   const listOfRefId = useMemo(() => {
@@ -18,8 +19,7 @@ export const FrameSelectionEditor: FC<StandardEditorProps<MatcherConfig>> = ({ v
     }));
   }, [context.data]);
 
-  // Dashboards saved before v1.4.5 stored the selected query as a bare refId.
-  const selectedRefId = typeof value === 'string' ? (value as string) : value?.options;
+  const selectedRefId = getSelectedRefId(value);
 
   const currentValue = useMemo<SelectableValue<string> | undefined>(() => {
     if (!selectedRefId) {

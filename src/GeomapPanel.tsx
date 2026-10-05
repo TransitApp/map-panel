@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { DEFAULT_BASEMAP_CONFIG, geomapLayerRegistry, defaultBaseLayer } from './layers/registry';
+import { findRenamedQueries, retargetRenamedQueries } from './layers/data/utils';
 import { Map, MapBrowserEvent, View } from 'ol';
 import Attribution from 'ol/control/Attribution';
 import Zoom from 'ol/control/Zoom';
@@ -96,6 +97,17 @@ export class GeomapPanel extends Component<Props, State> {
     }
 
     return true; // always?
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    // Layers select their query by refId, so a renamed query would leave them
+    // pointing at a refId that no longer exists. Follow the rename and save it.
+    // This runs after commit because onOptionsChange updates Grafana's state.
+    const renames = findRenamedQueries(prevProps.data.request?.targets, this.props.data.request?.targets);
+    const layers = retargetRenamedQueries(this.props.options.layers, renames);
+    if (layers) {
+      this.props.onOptionsChange({ ...this.props.options, layers });
+    }
   }
 
   /**
