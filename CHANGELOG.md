@@ -1,6 +1,9 @@
 # Changelog
 
 ## v1.5.0
+- Data layer rows are styled like Grafana's query rows: a lighter header with
+  the layer name (click to rename inline; Enter saves, Escape cancels), the layer
+  type, an inline delete button and the drag grip on the right
 - Data layers follow a renamed query instead of losing their data
 - The layer editor's field pickers (location fields, popup title, popup time and
   properties) only offer fields from the query that layer draws
