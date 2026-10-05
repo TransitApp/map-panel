@@ -6,6 +6,7 @@ import * as source from 'ol/source';
 import * as layer from 'ol/layer';
 import { dataFrameToPoints, getLocationMatchers } from '../../utils/location';
 import { ExtendMapLayerRegistryItem, ExtendMapLayerOptions } from 'extension';
+import { getLayerFrame } from './utils';
 
 export interface LastPointConfig {
   icon?: string;
@@ -51,7 +52,7 @@ export const lastPointTracker: ExtendMapLayerRegistryItem<LastPointConfig> = {
     return {
       init: () => vectorLayer,
       update: (data: PanelData) => {
-        const frame = data.series[0];
+        const frame = getLayerFrame(data.series, options.query);
         if (frame && frame.length) {
           const info = dataFrameToPoints(frame, matchers);
           if (info.warning) {

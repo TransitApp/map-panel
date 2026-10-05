@@ -1,6 +1,13 @@
 # Changelog
 
 ## v1.5.0
+- Fix data layers drawing the first query instead of the selected one. Marker
+  layers treated any frame carrying metadata as a match, which SQL data sources
+  always add, and heatmap, IDW and last-point layers ignored the selection
+- Fix the map tooltip crashing ("can't access property 'state'") when a layer's
+  popup fields are missing from the hovered frame
+- The query selector keeps showing the selected query, marked "(no data)", when
+  that query returns nothing, instead of showing a different query
 - Reorder data layers by dragging the grip next to each one in the panel editor
   (keyboard: focus the grip, Space to lift, arrow keys to move, Space to drop).
   The list now shows the topmost map layer first, like the core Geomap panel

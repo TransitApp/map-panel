@@ -231,7 +231,11 @@ export class GeomapPanel extends Component<Props, State> {
             let found = frame.fields.filter((obj: { name: string }) => {
               return obj.name === thisLayerName;
             });
-            propsToShow.push(found[0]);
+            // A configured field can be missing from the frame, e.g. after the
+            // layer's query changed or the field was renamed. Skip it.
+            if (found.length) {
+              propsToShow.push(found[0]);
+            }
           }
           hoverPayload.icon = thisLayer.icon ? thisLayer.icon : '';
           hoverPayload.data = ttip.data = frame as DataFrame;

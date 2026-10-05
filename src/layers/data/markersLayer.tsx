@@ -24,6 +24,7 @@ import { getCenter } from 'ol/extent';
 import tinycolor from 'tinycolor2';
 import { dataFrameToPoints, getLocationMatchers } from '../../utils/location';
 import { ExtendMapLayerRegistryItem, ExtendFrameGeometrySourceMode, ExtendMapLayerOptions } from '../../extension';
+import { getLayerFrame } from './utils';
 import {
   ColorDimensionConfig,
   ScaleDimensionConfig,
@@ -356,77 +357,76 @@ export const markersLayer: ExtendMapLayerRegistryItem<MarkersConfig> = {
         const showPin = options.config?.showPin ?? defaultOptions.showPin;
         const cluster = options.config?.cluster ?? defaultOptions.cluster;
 
-        for (const frame of data.series) {
-          if ((options.query && options.query.options === frame.refId) || (frame.meta)) {
-            const info = dataFrameToPoints(frame, matchers);
-            if (info.warning) {
-              console.log('Could not find locations', info.warning);
-              continue; // ???
-            }
+        // A layer draws one frame: its selected query's, or the first one.
+        const selected = getLayerFrame(data.series, options.query);
+        for (const frame of selected ? [selected] : []) {
+          const info = dataFrameToPoints(frame, matchers);
+          if (info.warning) {
+            console.log('Could not find locations', info.warning);
+            continue;
+          }
 
-            const colorDim = getColorDimension(frame, config.color, theme);
-            const sizeDim = getScaledDimension(frame, config.size);
+          const colorDim = getColorDimension(frame, config.color, theme);
+          const sizeDim = getScaledDimension(frame, config.size);
 
-            // Map each data value into new points
-            for (let i = 0; i < frame.length; i++) {
-              // Get the circle color for a specific data value depending on color scheme
-              const color = colorDim.get(i);
-              // Set the opacity determined from user configuration
-              const fillColor = tinycolor(color).setAlpha(opacity).toRgbString();
-              // Get circle size from user configuration
-              const radius = sizeDim.get(i);
+          // Map each data value into new points
+          for (let i = 0; i < frame.length; i++) {
+            // Get the circle color for a specific data value depending on color scheme
+            const color = colorDim.get(i);
+            // Set the opacity determined from user configuration
+            const fillColor = tinycolor(color).setAlpha(opacity).toRgbString();
+            // Get circle size from user configuration
+            const radius = sizeDim.get(i);
 
-              // Create a new Feature for each point returned from dataFrameToPoints
-              try {
-                const geoType = info.points[i].getType();
-                const geometry = new Feature(info.points[i]);
-                if (geoType === 'Point') {
-                  geometry.setStyle(shape!.make(color, fillColor, radius));
-                } else {
-                  const strokeSize = getScaledDimension(frame, config.geoJsonStrokeSize);
-                  let style = new Style({
-                    stroke: new Stroke({
-                      color: color,
-                      width: strokeSize.get(i),
-                    }),
-                    fill: new Fill({
-                      color: fillColor,
-                    }),
-                  });
-                  geometry.setStyle(style);
-                }
-                geometryFeatures.push(geometry);
-                if (showPin || cluster) {
-                  const center = getCenter(info.points[i].getExtent());
-                  const pin = new Feature(new Point(center));
-                  pin.setStyle(markerStyle({ color: color }));
-                  pin.set('style', { color: color, fillColor: fillColor });
-                  if (cluster) {
-                    pin.set('config', { frame: frame, config: config.color });
-                  }
-                  pin.setProperties({
-                    frame,
-                    rowIndex: i,
-                  });
-                  pinFeatures.push(pin);
-                } else {
-                  geometry.setProperties({
-                    frame,
-                    rowIndex: i,
-                  });
-                }
-              } catch (error) {
-                console.log(error);
+            // Create a new Feature for each point returned from dataFrameToPoints
+            try {
+              const geoType = info.points[i].getType();
+              const geometry = new Feature(info.points[i]);
+              if (geoType === 'Point') {
+                geometry.setStyle(shape!.make(color, fillColor, radius));
+              } else {
+                const strokeSize = getScaledDimension(frame, config.geoJsonStrokeSize);
+                let style = new Style({
+                  stroke: new Stroke({
+                    color: color,
+                    width: strokeSize.get(i),
+                  }),
+                  fill: new Fill({
+                    color: fillColor,
+                  }),
+                });
+                geometry.setStyle(style);
               }
+              geometryFeatures.push(geometry);
+              if (showPin || cluster) {
+                const center = getCenter(info.points[i].getExtent());
+                const pin = new Feature(new Point(center));
+                pin.setStyle(markerStyle({ color: color }));
+                pin.set('style', { color: color, fillColor: fillColor });
+                if (cluster) {
+                  pin.set('config', { frame: frame, config: config.color });
+                }
+                pin.setProperties({
+                  frame,
+                  rowIndex: i,
+                });
+                pinFeatures.push(pin);
+              } else {
+                geometry.setProperties({
+                  frame,
+                  rowIndex: i,
+                });
+              }
+            } catch (error) {
+              console.log(error);
             }
-            // Post updates to the legend component
-            if (legend) {
-              legendProps.next({
-                color: colorDim,
-                size: sizeDim,
-              });
-            }
-            break; // Only the first frame for now!
+          }
+          // Post updates to the legend component
+          if (legend) {
+            legendProps.next({
+              color: colorDim,
+              size: sizeDim,
+            });
           }
         }
 

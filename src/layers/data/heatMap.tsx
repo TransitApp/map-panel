@@ -7,6 +7,7 @@ import { FrameVectorSource } from '../../utils/frameVectorSource';
 import { ScaleDimensionConfig, getScaledDimension } from '../../dimensions';
 import { ScaleDimensionEditor } from '../../dimensions/editors';
 import { ExtendMapLayerRegistryItem, ExtendMapLayerOptions } from 'extension';
+import { getLayerFrame } from './utils';
 import { isNumber } from 'lodash';
 
 // Configuration options for Heatmap overlays
@@ -61,7 +62,7 @@ export const heatmapLayer: ExtendMapLayerRegistryItem<HeatmapConfig> = {
     return {
       init: () => vectorLayer,
       update: (data: PanelData) => {
-        const frame = data.series[0];
+        const frame = getLayerFrame(data.series, options.query);
         if (!frame) {
           return;
         }

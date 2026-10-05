@@ -8,6 +8,7 @@ import { FrameVectorSource } from '../../utils/frameVectorSource';
 import { ScaleDimensionConfig, getScaledDimension } from '../../dimensions';
 import { ScaleDimensionEditor } from '../../dimensions/editors';
 import { ExtendMapLayerRegistryItem, ExtendMapLayerOptions } from 'extension';
+import { getLayerFrame } from './utils';
 import { BaseLayerOptions, GroupLayerOptions } from 'ol-layerswitcher';
 import { Stroke, Style, Text } from 'ol/style';
 
@@ -99,7 +100,7 @@ export const idwmapLayer: ExtendMapLayerRegistryItem<IdwMapConfig> = {
     return {
       init: () => vectorLayer,
       update: (data: PanelData) => {
-        const frame = data.series[0];
+        const frame = getLayerFrame(data.series, options.query);
         if (!frame) {
           return;
         }
