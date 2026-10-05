@@ -15,6 +15,9 @@
 - Add an API key option to the CARTO base layer. CARTO now requires one on every
   `basemaps.cartocdn.com` request and otherwise serves an "API KEY REQUIRED"
   watermark tile
+- Switch the default base layer from CARTO to Open Street Map, so panels render
+  without credentials out of the box. A `geomapDefaultBaseLayerConfig` set on the
+  Grafana server still takes precedence
 - Switch the example dashboards to the Open Street Map base layer, so they render
   without a CARTO API key
 
