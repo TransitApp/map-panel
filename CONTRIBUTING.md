@@ -110,8 +110,8 @@ for the supported ways to customise it.
 1. Bump `version` in `package.json` to match
 1. Tag the master with the new version:
     ```sh
-    git tag v1.5.0
-    git push origin v1.5.0
+    git tag v2.0.0
+    git push origin v2.0.0
     ```
 1. Complete the release information in github.
 

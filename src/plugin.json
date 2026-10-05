@@ -1,14 +1,14 @@
 {
   "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
   "type": "panel",
-  "name": "Orchestra Cities Map",
-  "id": "orchestracities-map-panel",
+  "name": "Multi-Layer Map",
+  "id": "transitapp-map-panel",
   "state": "beta",
   "info": {
-    "description": "Orchestra Cities Map",
+    "description": "Map panel that shows data from several queries as separate layers: markers, GeoJSON shapes, heatmaps and IDW interpolation. A fork of the Orchestra Cities Map Panel.",
     "author": {
-      "name": "Orchestra Cities",
-      "url": "https://github.com/orchestracities"
+      "name": "TransitApp",
+      "url": "https://transitapp.com"
     },
     "keywords": [
       "map",
@@ -23,11 +23,15 @@
     "links": [
       {
         "name": "Website",
-        "url": "https://github.com/orchestracities/grafana-map-plugin/"
+        "url": "https://github.com/TransitApp/map-panel"
       },
       {
         "name": "License",
-        "url": "https://github.com/orchestracities/grafana-map-plugin/blob/master/LICENSE"
+        "url": "https://github.com/TransitApp/map-panel/blob/master/LICENSE"
+      },
+      {
+        "name": "Original project (Orchestra Cities)",
+        "url": "https://github.com/orchestracities/map-panel"
       }
     ],
     "screenshots": [

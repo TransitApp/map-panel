@@ -1,49 +1,23 @@
 # Changelog
 
-## v1.5.0
-- Rename the "Base layer" and "Data layer" editor sections to "Basemap" and
-  "Data layers"
-- The Add Layer button sits below the layer list and adds the new layer at the
-  bottom of the list, so it is drawn beneath the existing layers
-- Layer names are edited inline only; the duplicate Name field is gone
-- Data layer rows are styled like Grafana's query rows: a lighter header with
-  the layer name (click to rename inline; Enter saves, Escape cancels), the layer
-  type, an inline delete button and the drag grip on the right
-- Data layers follow a renamed query instead of losing their data
-- The layer editor's field pickers (location fields, popup title, popup time and
-  properties) only offer fields from the query that layer draws
-- Fix data layers drawing the first query instead of the selected one. Marker
-  layers treated any frame carrying metadata as a match, which SQL data sources
-  always add, and heatmap, IDW and last-point layers ignored the selection
-- Fix the map tooltip crashing ("can't access property 'state'") when a layer's
-  popup fields are missing from the hovered frame
-- The query selector keeps showing the selected query, marked "(no data)", when
-  that query returns nothing (for example because it failed), instead of
-  showing a different query
-- Reorder data layers by dragging the grip next to each one in the panel editor
-  (keyboard: focus the grip, Space to lift, arrow keys to move, Space to drop).
-  The list now shows the topmost map layer first, like the core Geomap panel
-- Keep each data layer's expanded/collapsed state with that layer; it used to be
-  tied to the row position
-- Update to the current Grafana plugin toolchain: `@grafana/toolkit` is replaced
-  by the `@grafana/create-plugin` scaffolding (webpack 5 + SWC, ESLint 9, jest 29)
-- Support Grafana 12.3+ (built against the Grafana 13 frontend packages)
-- Upgrade React 17 -> 18 and OpenLayers 6 -> 10 (ol-ext 3 -> 4)
-- Adapt the marker icon list to ol-ext 4, which moved `FontSymbol.defs` from the
-  prototype to a static member
-- Fix the resource dimension passing `Array.prototype.get` unbound, which made
-  mapped resource lookups return `undefined`
-- Replace the deprecated `field.values.get(i)` Vector shim with array indexing
-- Provision data sources and example dashboards from `provisioning/` instead of
-  the `set-up-grafana.sh` curl script
-- Add an API key option to the CARTO base layer. CARTO now requires one on every
-  `basemaps.cartocdn.com` request and otherwise serves an "API KEY REQUIRED"
-  watermark tile
-- Switch the default base layer from CARTO to Open Street Map, so panels render
-  without credentials out of the box. A `geomapDefaultBaseLayerConfig` set on the
-  Grafana server still takes precedence
-- Switch the example dashboards to the Open Street Map base layer, so they render
-  without a CARTO API key
+## v2.0.0
+
+TransitApp's fork of the Orchestra Cities Map Panel, which is no longer
+maintained. Versions up to 1.4.5 below are the original project's.
+Modifications by TransitApp start here, in October 2026.
+
+- **Breaking:** the plugin ID changed from `orchestracities-map-panel` to
+  `transitapp-map-panel`. Panel options are unchanged; to migrate a dashboard,
+  change the `type` of each map panel to `transitapp-map-panel`
+- Renamed plugin "Multi-Layer Map"
+- Updated "Data layers" editor section to use drag-and-drop reordering and allow
+  for inline renaming.
+- Data layers ordering inverted: the first layer in the list is drawn on top.
+- Improved handling of renamed queries: data layers now try to follow the renamed
+  query.
+- Updated dependencies, including migrating to a more recent version of the
+  Grafana plugin harness.
+- Add an API key configuration to CARTO's basemap, and switch the default to OSM.
 
 ## v1.4.5
 - Support data frames resulting from transformations (#77)

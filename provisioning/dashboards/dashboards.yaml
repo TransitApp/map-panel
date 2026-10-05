@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-  - name: 'Orchestra Cities Map examples'
+  - name: 'Multi-Layer Map examples'
     orgId: 1
     folder: 'Examples'
     type: file

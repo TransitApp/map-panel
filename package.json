@@ -1,7 +1,7 @@
 {
-  "name": "orchestracities-map-panel",
-  "version": "1.5.0",
-  "description": "Grafana panel that displays geospatial data from a variety of datasources on an interactive map.",
+  "name": "transitapp-map-panel",
+  "version": "2.0.0",
+  "description": "Grafana map panel showing several queries as separate layers. A fork of the Orchestra Cities Map Panel.",
   "scripts": {
     "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
     "dev": "webpack -w -c ./.config/webpack/webpack.config.ts --env development",
@@ -15,7 +15,10 @@
     "test:ci": "jest --passWithNoTests --maxWorkers 4",
     "typecheck": "tsc --noEmit"
   },
-  "author": "Federico M. Facca",
+  "author": "TransitApp",
+  "contributors": [
+    "Federico M. Facca (original author, Orchestra Cities Map Panel)"
+  ],
   "license": "AGPL-3.0",
   "devDependencies": {
     "@grafana/eslint-config": "^9.0.0",

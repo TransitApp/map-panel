@@ -1,4 +1,15 @@
-# Orchestra Cities - Map Panel
+# Multi-Layer Map
+
+> **A fork of the [Orchestra Cities Map Panel](https://github.com/orchestracities/map-panel).**
+> The original plugin was written by Orchestra Cities, and all credit for it goes
+> to its authors. That project is no longer maintained. TransitApp has modified
+> this fork since October 2026: it runs on current Grafana (12.3 and later) and
+> adds layer reordering, per-layer query handling and other fixes; see the
+> [changelog](CHANGELOG.md). It remains licensed under the [AGPL-3.0](LICENSE).
+>
+> **Maintenance:** TransitApp maintains this fork for its own use. Issues and pull
+> requests are welcome and handled on a best-effort basis.
+
 This plugin extends [Grafana Geomap](https://grafana.com/docs/grafana/latest/visualizations/geomap/)
 panel with several functionalities:
 
@@ -9,9 +20,9 @@ panel with several functionalities:
 * A new map layer leveraging [Inverse distance weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting)
   (IDW) interpolation for scattered data points using Shepard's method.
 
-![Marker layer](https://github.com/orchestracities/grafana-map-plugin/raw/master/example.png)
+![Marker layer](https://github.com/TransitApp/map-panel/raw/master/example.png)
 
-![IDW layer](https://github.com/orchestracities/grafana-map-plugin/raw/master/example4.png)
+![IDW layer](https://github.com/TransitApp/map-panel/raw/master/example4.png)
 
 
 New customization options available for the markers layer:
@@ -20,7 +31,7 @@ New customization options available for the markers layer:
 * A fully customizable pin with the possibility to change colors, shapes and sizes
 * The possibility to select which properties to be displayed on the popup
 
-![Marker layer options](https://github.com/orchestracities/grafana-map-plugin/raw/master/example2.png)
+![Marker layer options](https://github.com/TransitApp/map-panel/raw/master/example2.png)
 
 Cluster options:
 
@@ -41,7 +52,7 @@ Popup Options:
 * Display the Timestamp
 * Selectable properties
 
-![Marker layer options](https://github.com/orchestracities/grafana-map-plugin/raw/master/example3.png)
+![Marker layer options](https://github.com/TransitApp/map-panel/raw/master/example3.png)
 
 Options available for the IDW layer:
 
@@ -59,9 +70,23 @@ Pupup Options:
 * Selectable properties
 
 
-![Marker layer options](https://github.com/orchestracities/grafana-map-plugin/raw/master/example5.png)
+![Marker layer options](https://github.com/TransitApp/map-panel/raw/master/example5.png)
 
-It requires Grafana >=8.2.0
+It requires Grafana 12.3 or later.
+
+## Migrating from the Orchestra Cities Map Panel
+
+The plugin ID changed from `orchestracities-map-panel` to `transitapp-map-panel`.
+Panel options are unchanged, so migrating a dashboard means changing the `type`
+of each map panel in its JSON:
+
+```diff
+-  "type": "orchestracities-map-panel",
++  "type": "transitapp-map-panel",
+```
+
+Until a dashboard is migrated, its map panels stay blank, with a red error badge
+that reads "Plugin orchestracities-map-panel not found".
 
 ## Usage with PostGis
 
@@ -89,4 +114,4 @@ For more information about panels, refer to the documentation on [Panels](https:
 
 ## Set up dev environment
 
-See [Contributing](https://github.com/orchestracities/grafana-map-plugin/blob/master/CONTRIBUTING.md)
+See [Contributing](CONTRIBUTING.md).

@@ -4,10 +4,10 @@ services:
       file: .config/docker-compose-base.yaml
       service: grafana
     volumes:
-      - ./dist:/var/lib/grafana/plugins/orchestracities-map-panel
+      - ./dist:/var/lib/grafana/plugins/transitapp-map-panel
       - ./provisioning:/etc/grafana/provisioning
       - ./dashboards:/var/lib/grafana/dashboards
-      - .:/root/orchestracities-map-panel
+      - .:/root/transitapp-map-panel
     depends_on:
       - crate
       - timescale

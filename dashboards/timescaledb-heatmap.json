@@ -403,8 +403,8 @@
           "whereClauses": []
         }
       ],
-      "title": "Orchestracities Map",
-      "type": "orchestracities-map-panel"
+      "title": "Multi-Layer Map",
+      "type": "transitapp-map-panel"
     }
   ],
   "refresh": false,
