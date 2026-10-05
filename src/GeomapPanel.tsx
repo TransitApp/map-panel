@@ -190,12 +190,12 @@ export class GeomapPanel extends Component<Props, State> {
 
     // Tooltip listener
     this.map.on('pointermove', this.pointerMoveListener);
-    this.map.getViewport().addEventListener('mouseout', (evt) => {
+    this.map!.getViewport()?.addEventListener('mouseout', () => {
       this.props.eventBus.publish(new DataHoverClearEvent());
     });
   };
 
-  pointerMoveListener = (evt: MapBrowserEvent<UIEvent>) => {
+  pointerMoveListener = (evt: MapBrowserEvent) => {
     if (!this.map) {
       return;
     }

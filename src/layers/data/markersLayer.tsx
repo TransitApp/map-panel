@@ -166,7 +166,7 @@ export const markersLayer: ExtendMapLayerRegistryItem<MarkersConfig> = {
         }),
       });
 
-      style.getText().setText(customValue);
+      style.getText()?.setText(customValue);
       return style;
     }
 
@@ -280,7 +280,7 @@ export const markersLayer: ExtendMapLayerRegistryItem<MarkersConfig> = {
           }),
         })
       );
-      let image: Image = new FontSymbol({});
+      let image: Image | null = new FontSymbol({});
       if (enableShadow) {
         image = styles[1].getImage();
       } else {
@@ -457,7 +457,7 @@ export const markersLayer: ExtendMapLayerRegistryItem<MarkersConfig> = {
   },
   // Marker overlay options
   registerOptionsUI: (builder) => {
-    const iconType = Object.getOwnPropertyNames(FontSymbol.prototype.defs.glyphs);
+    const iconType = Object.getOwnPropertyNames(FontSymbol.defs.glyphs);
     let iconValues: any = [];
     iconValues.push({ value: '', label: 'none' });
     iconType.map((n) => iconValues.push({ value: n, label: n.replace('fa-', '') }));

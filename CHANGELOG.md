@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.5.0
+- Update to the current Grafana plugin toolchain: `@grafana/toolkit` is replaced
+  by the `@grafana/create-plugin` scaffolding (webpack 5 + SWC, ESLint 9, jest 29)
+- Support Grafana 12.3+ (built against the Grafana 13 frontend packages)
+- Upgrade React 17 -> 18 and OpenLayers 6 -> 10 (ol-ext 3 -> 4)
+- Adapt the marker icon list to ol-ext 4, which moved `FontSymbol.defs` from the
+  prototype to a static member
+- Fix the resource dimension passing `Array.prototype.get` unbound, which made
+  mapped resource lookups return `undefined`
+- Replace the deprecated `field.values.get(i)` Vector shim with array indexing
+- Provision data sources and example dashboards from `provisioning/` instead of
+  the `set-up-grafana.sh` curl script
+
 ## v1.4.5
 - Support data frames resulting from transformations (#77)
 - Support value mapping colors (#75)
