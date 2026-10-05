@@ -9,18 +9,18 @@ import Geometry from 'ol/geom/Geometry';
 import RenderFeature from 'ol/render/Feature';
 
 function createOLStyle() {
-  var fill = new Fill({ color: '' });
-  var stroke = new Stroke({ color: '', width: 1 });
-  var polygon = new Style({ fill: fill, stroke: stroke });
-  var line = new Style({ stroke: stroke });
+  let fill = new Fill({ color: '' });
+  let stroke = new Stroke({ color: '', width: 1 });
+  let polygon = new Style({ fill: fill, stroke: stroke });
+  let line = new Style({ stroke: stroke });
 
   let styles: Style[] = [];
   return function (feature: Feature<Geometry> | RenderFeature, resolution: number) {
     //console.log('=============>>> feature', feature,resolution);
-    var length = 0;
-    var layer = feature.get('layer');
-    var kind = feature.get('kind');
-    var geometry = feature.getGeometry();
+    let length = 0;
+    let layer = feature.get('layer');
+    let kind = feature.get('kind');
+    let geometry = feature.getGeometry();
     if (geometry) {
       let geometryType = geometry.getType();
 

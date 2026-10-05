@@ -1,0 +1,38 @@
+services:
+  grafana:
+    extends:
+      file: .config/docker-compose-base.yaml
+      service: grafana
+    volumes:
+      - ./dist:/var/lib/grafana/plugins/orchestracities-map-panel
+      - ./provisioning:/etc/grafana/provisioning
+      - ./dashboards:/var/lib/grafana/dashboards
+      - .:/root/orchestracities-map-panel
+    depends_on:
+      - crate
+      - timescale
+
+  crate:
+    image: crate:5.10.11
+    ports:
+      - '4200:4200'
+    volumes:
+      - crate-storage:/data
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command: crate -Cnode.name=crate -Cdiscovery.type=single-node
+
+  timescale:
+    image: timescale/timescaledb-ha:${TIMESCALE_VERSION:-pg16}
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=${PGPASSWORD:-postgres}
+      - PGPASSWORD=${PGPASSWORD:-postgres}
+    volumes:
+      - timescale-storage:/home/postgres/pgdata
+      - ./db-init:/db-init
+
+volumes:
+  crate-storage:
+  timescale-storage:

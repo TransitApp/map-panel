@@ -27,7 +27,7 @@ export const MapViewEditor: FC<StandardEditorProps<MapViewConfig, any, GeomapPan
       ids.push(centerPointRegistry.list()[0].id);
     }
     return centerPointRegistry.selectOptions(ids);
-  }, [value?.id]);
+  }, [value]);
 
   const onSetCurrentView = useCallback(() => {
     const map = lastGeomapPanelInstance?.map;
@@ -52,7 +52,7 @@ export const MapViewEditor: FC<StandardEditorProps<MapViewConfig, any, GeomapPan
       let source = layer.getSource();
       if (source !== undefined && source instanceof Vector) {
         let features = source.getFeatures();
-        for (var feature of features) {
+        for (let feature of features) {
           let geo = feature.getGeometry();
           if (geo) {
             extend(extent, geo.getExtent());
@@ -78,11 +78,11 @@ export const MapViewEditor: FC<StandardEditorProps<MapViewConfig, any, GeomapPan
         if (map) {
           let extent = createEmpty();
           const layers = map.getLayers().getArray();
-          for (var layer of layers) {
+          for (let layer of layers) {
             computeExtent(layer, extent);
             if (layer instanceof LayerGroup) {
               const groupLayers = layer.getLayersArray();
-              for (var l of groupLayers) {
+              for (let l of groupLayers) {
                 computeExtent(l, extent);
               }
             }

@@ -137,12 +137,12 @@ export class GeomapPanel extends Component<Props, State> {
     if (this.props.options.view.id === MapCenterID.Auto && this.map) {
       let extent = createEmpty();
       const layers = this.map.getLayers().getArray();
-      for (var layer of layers) {
+      for (let layer of layers) {
         if (layer instanceof VectorLayer) {
           let source = layer.getSource();
           if (source !== undefined && source instanceof Vector) {
             let features = source.getFeatures();
-            for (var feature of features) {
+            for (let feature of features) {
               let geo = feature.getGeometry();
               if (geo) {
                 extend(extent, geo.getExtent());
@@ -392,15 +392,15 @@ export class GeomapPanel extends Component<Props, State> {
 
     const map = this.map;
 
-    var zoomCluster = function (pixel: number[]) {
-      var feature = map.forEachFeatureAtPixel(pixel, function (feature) {
+    let zoomCluster = function (pixel: number[]) {
+      let feature = map.forEachFeatureAtPixel(pixel, function (feature) {
         return feature;
       });
 
       if (feature) {
-        var features = feature.get('features');
+        let features = feature.get('features');
         if (features && features.length > 1) {
-          var extent = createEmpty();
+          let extent = createEmpty();
           features.forEach(function (f: any) {
             extend(extent, f.getGeometry().getExtent());
           });

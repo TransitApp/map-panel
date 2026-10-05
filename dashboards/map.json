@@ -1,1756 +1,1729 @@
 {
-    "meta": {
-        "type": "db",
-        "canSave": true,
-        "canEdit": true,
-        "canAdmin": true,
-        "canStar": true,
-        "slug": "map-dashboard",
-        "url": "/d/QFqeHd57z/map-dashboard",
-        "expires": "0001-01-01T00:00:00Z",
-        "created": "2021-11-29T08:17:38Z",
-        "updated": "2021-11-29T18:35:12Z",
-        "updatedBy": "admin",
-        "createdBy": "admin",
-        "version": 18,
-        "hasAcl": false,
-        "isFolder": false,
-        "folderId": 0,
-        "folderUid": "",
-        "folderTitle": "General",
-        "folderUrl": "",
-        "provisioned": false,
-        "provisionedExternalId": ""
-    },
-    "dashboard": {
-        "annotations": {
-            "list": [
-                {
-                    "builtIn": 1,
-                    "datasource": "-- Grafana --",
-                    "enable": true,
-                    "hide": true,
-                    "iconColor": "rgba(0, 211, 255, 1)",
-                    "name": "Annotations & Alerts",
-                    "target": {
-                        "limit": 100,
-                        "matchAny": false,
-                        "tags": [],
-                        "type": "dashboard"
-                    },
-                    "type": "dashboard"
-                }
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 40
+              }
             ]
+          },
+          "unit": "percent"
         },
-        "editable": true,
-        "fiscalYearStartMonth": 0,
-        "gnetId": null,
-        "graphTooltip": 0,
-        "id": null,
-        "links": [],
-        "liveNow": false,
-        "panels": [
-            {
-                "datasource": null,
-                "fieldConfig": {
-                    "defaults": {
-                        "color": {
-                            "mode": "thresholds"
-                        },
-                        "mappings": [],
-                        "thresholds": {
-                            "mode": "absolute",
-                            "steps": [
-                                {
-                                    "color": "green",
-                                    "value": null
-                                },
-                                {
-                                    "color": "red",
-                                    "value": 40
-                                }
-                            ]
-                        },
-                        "unit": "percent"
-                    },
-                    "overrides": []
-                },
-                "gridPos": {
-                    "h": 11,
-                    "w": 12,
-                    "x": 0,
-                    "y": 0
-                },
-                "id": 8,
-                "links": [],
-                "maxDataPoints": 1,
-                "options": {
-                    "basemap": {
-                        "config": {},
-                        "type": "default"
-                    },
-                    "controls": {
-                        "mouseWheelZoom": true,
-                        "showAttribution": true,
-                        "showDebug": false,
-                        "showLayercontrol": true,
-                        "showScale": false,
-                        "showZoom": true
-                    },
-                    "layers": [
-                        {
-                            "config": {
-                                "cluster": true,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "size",
-                                "color": {
-                                    "fixed": "dark-green"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-car",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 1,
-                                    "max": 35,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber",
-                                "entity_type"
-                            ],
-                            "location": {
-                                "geojson": "location",
-                                "latitude": "latitude",
-                                "longitude": "longitude",
-                                "mode": "geojson"
-                            },
-                            "name": "OffStreetParking",
-                            "query": "A",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        },
-                        {
-                            "config": {
-                                "cluster": true,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "sum",
-                                "color": {
-                                    "fixed": "red"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-battery-quarter",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 5,
-                                    "max": 15,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber"
-                            ],
-                            "location": {
-                                "mode": "coords"
-                            },
-                            "name": "2nd layer",
-                            "popup": {
-                                "time": "time",
-                                "title": "id"
-                            },
-                            "query": "B",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        }
-                    ],
-                    "view": {
-                        "id": "auto",
-                        "lat": 47.385221,
-                        "lon": 8.544864,
-                        "zoom": 12
-                    }
-                },
-                "targets": [
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
-                        "refId": "A",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'OffStreetParking'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    },
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
-                        "refId": "B",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'EVChargingStation'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    }
-                ],
-                "title": "Demo 1",
-                "type": "orchestracities-map-panel"
-            },
-            {
-                "datasource": null,
-                "fieldConfig": {
-                    "defaults": {
-                        "color": {
-                            "mode": "thresholds"
-                        },
-                        "mappings": [],
-                        "thresholds": {
-                            "mode": "absolute",
-                            "steps": [
-                                {
-                                    "color": "green",
-                                    "value": null
-                                },
-                                {
-                                    "color": "red",
-                                    "value": 40
-                                }
-                            ]
-                        },
-                        "unit": "percent"
-                    },
-                    "overrides": []
-                },
-                "gridPos": {
-                    "h": 11,
-                    "w": 12,
-                    "x": 12,
-                    "y": 0
-                },
-                "id": 7,
-                "links": [],
-                "maxDataPoints": 1,
-                "options": {
-                    "basemap": {
-                        "config": {},
-                        "type": "default"
-                    },
-                    "controls": {
-                        "mouseWheelZoom": true,
-                        "showAttribution": true,
-                        "showDebug": false,
-                        "showLayercontrol": true,
-                        "showScale": false,
-                        "showZoom": true
-                    },
-                    "layers": [
-                        {
-                            "config": {
-                                "cluster": false,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "size",
-                                "color": {
-                                    "field": "availablespotnumber",
-                                    "fixed": "dark-green"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-car",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 1,
-                                    "max": 35,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber",
-                                "entity_type"
-                            ],
-                            "location": {
-                                "geojson": "location",
-                                "latitude": "latitude",
-                                "longitude": "longitude",
-                                "mode": "geojson"
-                            },
-                            "name": "OffStreetParking",
-                            "query": "A",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        },
-                        {
-                            "config": {
-                                "cluster": false,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "sum",
-                                "color": {
-                                    "fixed": "red"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": true,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-battery-three-quarters",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 5,
-                                    "max": 15,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber"
-                            ],
-                            "location": {
-                                "mode": "coords"
-                            },
-                            "name": "2nd layer",
-                            "popup": {
-                                "time": "time",
-                                "title": "id"
-                            },
-                            "query": "B",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        }
-                    ],
-                    "view": {
-                        "id": "auto",
-                        "lat": 47.385221,
-                        "lon": 8.544864,
-                        "zoom": 12
-                    }
-                },
-                "targets": [
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
-                        "refId": "A",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'OffStreetParking'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    },
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
-                        "refId": "B",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'EVChargingStation'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    }
-                ],
-                "title": "Demo 2",
-                "type": "orchestracities-map-panel"
-            },
-            {
-                "datasource": null,
-                "fieldConfig": {
-                    "defaults": {
-                        "color": {
-                            "mode": "thresholds"
-                        },
-                        "mappings": [],
-                        "thresholds": {
-                            "mode": "absolute",
-                            "steps": [
-                                {
-                                    "color": "green",
-                                    "value": null
-                                },
-                                {
-                                    "color": "red",
-                                    "value": 40
-                                }
-                            ]
-                        },
-                        "unit": "percent"
-                    },
-                    "overrides": []
-                },
-                "gridPos": {
-                    "h": 11,
-                    "w": 12,
-                    "x": 0,
-                    "y": 11
-                },
-                "id": 10,
-                "links": [],
-                "maxDataPoints": 1,
-                "options": {
-                    "basemap": {
-                        "config": {},
-                        "type": "default"
-                    },
-                    "controls": {
-                        "mouseWheelZoom": true,
-                        "showAttribution": true,
-                        "showDebug": false,
-                        "showLayercontrol": true,
-                        "showScale": false,
-                        "showZoom": true
-                    },
-                    "layers": [
-                        {
-                            "config": {
-                                "cluster": true,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "size",
-                                "color": {
-                                    "fixed": "dark-green"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-car",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 1,
-                                    "max": 35,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber",
-                                "entity_type"
-                            ],
-                            "location": {
-                                "geojson": "location",
-                                "latitude": "latitude",
-                                "longitude": "longitude",
-                                "mode": "geojson"
-                            },
-                            "name": "OffStreetParking",
-                            "query": "A",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        },
-                        {
-                            "config": {
-                                "cluster": true,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "sum",
-                                "color": {
-                                    "fixed": "red"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-battery-quarter",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 5,
-                                    "max": 15,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber"
-                            ],
-                            "location": {
-                                "mode": "coords"
-                            },
-                            "name": "2nd layer",
-                            "popup": {
-                                "time": "time",
-                                "title": "id"
-                            },
-                            "query": "B",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        }
-                    ],
-                    "view": {
-                        "id": "auto",
-                        "lat": 47.385221,
-                        "lon": 8.544864,
-                        "zoom": 12
-                    }
-                },
-                "targets": [
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
-                        "refId": "A",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'OffStreetParking'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    },
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
-                        "refId": "B",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'EVChargingStation'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    }
-                ],
-                "title": "Demo 1",
-                "type": "orchestracities-map-panel"
-            },
-            {
-                "datasource": null,
-                "fieldConfig": {
-                    "defaults": {
-                        "color": {
-                            "mode": "thresholds"
-                        },
-                        "mappings": [],
-                        "thresholds": {
-                            "mode": "absolute",
-                            "steps": [
-                                {
-                                    "color": "green",
-                                    "value": null
-                                },
-                                {
-                                    "color": "red",
-                                    "value": 40
-                                }
-                            ]
-                        },
-                        "unit": "percent"
-                    },
-                    "overrides": []
-                },
-                "gridPos": {
-                    "h": 11,
-                    "w": 12,
-                    "x": 12,
-                    "y": 11
-                },
-                "id": 9,
-                "links": [],
-                "maxDataPoints": 1,
-                "options": {
-                    "basemap": {
-                        "config": {},
-                        "type": "default"
-                    },
-                    "controls": {
-                        "mouseWheelZoom": true,
-                        "showAttribution": true,
-                        "showDebug": false,
-                        "showLayercontrol": true,
-                        "showScale": false,
-                        "showZoom": true
-                    },
-                    "layers": [
-                        {
-                            "config": {
-                                "cluster": true,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "size",
-                                "color": {
-                                    "fixed": "dark-green"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-car",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 1,
-                                    "max": 35,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber",
-                                "entity_type"
-                            ],
-                            "location": {
-                                "geojson": "location",
-                                "latitude": "latitude",
-                                "longitude": "longitude",
-                                "mode": "geojson"
-                            },
-                            "name": "OffStreetParking",
-                            "query": "A",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        },
-                        {
-                            "config": {
-                                "cluster": true,
-                                "clusterDistance": 20,
-                                "clusterMinDistance": 0,
-                                "clusterValue": "sum",
-                                "color": {
-                                    "fixed": "red"
-                                },
-                                "enableGradient": false,
-                                "enableShadow": false,
-                                "fillOpacity": 0.4,
-                                "iconSize": 20,
-                                "pinShape": "marker",
-                                "selectIcon": "fa-battery-quarter",
-                                "shape": "circle",
-                                "showLegend": true,
-                                "showPin": true,
-                                "size": {
-                                    "field": "availablespotnumber",
-                                    "fixed": 5,
-                                    "max": 15,
-                                    "min": 2
-                                }
-                            },
-                            "displayProperties": [
-                                "availablespotnumber"
-                            ],
-                            "location": {
-                                "mode": "coords"
-                            },
-                            "name": "2nd layer",
-                            "popup": {
-                                "time": "time",
-                                "title": "id"
-                            },
-                            "query": "B",
-                            "timeField": "time_index",
-                            "titleField": "entity_id",
-                            "type": "markers"
-                        }
-                    ],
-                    "view": {
-                        "id": "auto",
-                        "lat": 47.385221,
-                        "lon": 8.544864,
-                        "zoom": 12
-                    }
-                },
-                "targets": [
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
-                        "refId": "A",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'OffStreetParking'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    },
-                    {
-                        "format": "table",
-                        "group": [],
-                        "groupByAliases": [
-                            "type"
-                        ],
-                        "groupByColumns": [
-                            "entity_type"
-                        ],
-                        "hide": false,
-                        "metricAggs": [
-                            {
-                                "alias": "id",
-                                "column": "entity_id",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "value",
-                                "column": "availablespotnumber",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "geojson",
-                                "column": "location",
-                                "type": "raw"
-                            },
-                            {
-                                "alias": "created_at",
-                                "column": "time_index",
-                                "type": "raw"
-                            }
-                        ],
-                        "metricColumn": "none",
-                        "queryType": "randomWalk",
-                        "rawQuery": false,
-                        "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
-                        "refId": "B",
-                        "resultFormat": "table",
-                        "select": [
-                            [
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "availablespotnumber"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "longitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "longitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "latitude(location_centroid)"
-                                    ],
-                                    "type": "column"
-                                },
-                                {
-                                    "params": [
-                                        "latitude"
-                                    ],
-                                    "type": "alias"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_id"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "time_index"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "entity_type"
-                                    ],
-                                    "type": "column"
-                                }
-                            ],
-                            [
-                                {
-                                    "params": [
-                                        "location"
-                                    ],
-                                    "type": "column"
-                                }
-                            ]
-                        ],
-                        "table": "doc.example",
-                        "timeColumn": "time_index",
-                        "timeColumnType": null,
-                        "where": [
-                            {
-                                "name": "$__timeFilter",
-                                "params": [],
-                                "type": "macro"
-                            },
-                            {
-                                "datatype": null,
-                                "name": "",
-                                "params": [
-                                    "entity_type",
-                                    "=",
-                                    "'EVChargingStation'"
-                                ],
-                                "type": "expression"
-                            }
-                        ],
-                        "whereClauses": []
-                    }
-                ],
-                "title": "Demo 1",
-                "type": "orchestracities-map-panel"
-            }
-        ],
-        "refresh": "",
-        "schemaVersion": 31,
-        "style": "dark",
-        "tags": [],
-        "templating": {
-            "list": []
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "links": [],
+      "maxDataPoints": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "type": "default"
         },
-        "time": {
-            "from": "now-5y",
-            "to": "now"
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showLayercontrol": true,
+          "showScale": false,
+          "showZoom": true
         },
-        "timepicker": {
-            "refresh_intervals": [
-                "5s",
-                "10s",
-                "30s",
-                "1m",
-                "5m",
-                "15m",
-                "30m",
-                "1h",
-                "2h",
-                "1d"
+        "layers": [
+          {
+            "config": {
+              "cluster": true,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "size",
+              "color": {
+                "fixed": "dark-green"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-car",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 1,
+                "max": 35,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber",
+              "entity_type"
             ],
-            "time_options": [
-                "5m",
-                "15m",
-                "1h",
-                "6h",
-                "12h",
-                "24h",
-                "2d",
-                "7d",
-                "30d"
+            "location": {
+              "geojson": "location",
+              "latitude": "latitude",
+              "longitude": "longitude",
+              "mode": "geojson"
+            },
+            "name": "OffStreetParking",
+            "query": "A",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          },
+          {
+            "config": {
+              "cluster": true,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "sum",
+              "color": {
+                "fixed": "red"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-battery-quarter",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 5,
+                "max": 15,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber"
+            ],
+            "location": {
+              "mode": "coords"
+            },
+            "name": "2nd layer",
+            "popup": {
+              "time": "time",
+              "title": "id"
+            },
+            "query": "B",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          }
+        ],
+        "view": {
+          "id": "auto",
+          "lat": 47.385221,
+          "lon": 8.544864,
+          "zoom": 12
+        }
+      },
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
             ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'OffStreetParking'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
         },
-        "timezone": "",
-        "title": "Map Dashboard",
-        "uid": "QFqeHd57z",
-        "version": 18
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'EVChargingStation'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        }
+      ],
+      "title": "Demo 1",
+      "type": "orchestracities-map-panel"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 40
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 7,
+      "links": [],
+      "maxDataPoints": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showLayercontrol": true,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "cluster": false,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "size",
+              "color": {
+                "field": "availablespotnumber",
+                "fixed": "dark-green"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-car",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 1,
+                "max": 35,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber",
+              "entity_type"
+            ],
+            "location": {
+              "geojson": "location",
+              "latitude": "latitude",
+              "longitude": "longitude",
+              "mode": "geojson"
+            },
+            "name": "OffStreetParking",
+            "query": "A",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          },
+          {
+            "config": {
+              "cluster": false,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "sum",
+              "color": {
+                "fixed": "red"
+              },
+              "enableGradient": false,
+              "enableShadow": true,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-battery-three-quarters",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 5,
+                "max": 15,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber"
+            ],
+            "location": {
+              "mode": "coords"
+            },
+            "name": "2nd layer",
+            "popup": {
+              "time": "time",
+              "title": "id"
+            },
+            "query": "B",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          }
+        ],
+        "view": {
+          "id": "auto",
+          "lat": 47.385221,
+          "lon": 8.544864,
+          "zoom": 12
+        }
+      },
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'OffStreetParking'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        },
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'EVChargingStation'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        }
+      ],
+      "title": "Demo 2",
+      "type": "orchestracities-map-panel"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 40
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 10,
+      "links": [],
+      "maxDataPoints": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showLayercontrol": true,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "cluster": true,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "size",
+              "color": {
+                "fixed": "dark-green"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-car",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 1,
+                "max": 35,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber",
+              "entity_type"
+            ],
+            "location": {
+              "geojson": "location",
+              "latitude": "latitude",
+              "longitude": "longitude",
+              "mode": "geojson"
+            },
+            "name": "OffStreetParking",
+            "query": "A",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          },
+          {
+            "config": {
+              "cluster": true,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "sum",
+              "color": {
+                "fixed": "red"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-battery-quarter",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 5,
+                "max": 15,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber"
+            ],
+            "location": {
+              "mode": "coords"
+            },
+            "name": "2nd layer",
+            "popup": {
+              "time": "time",
+              "title": "id"
+            },
+            "query": "B",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          }
+        ],
+        "view": {
+          "id": "auto",
+          "lat": 47.385221,
+          "lon": 8.544864,
+          "zoom": 12
+        }
+      },
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'OffStreetParking'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        },
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'EVChargingStation'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        }
+      ],
+      "title": "Demo 1",
+      "type": "orchestracities-map-panel"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 40
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 9,
+      "links": [],
+      "maxDataPoints": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showLayercontrol": true,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "cluster": true,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "size",
+              "color": {
+                "fixed": "dark-green"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-car",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 1,
+                "max": 35,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber",
+              "entity_type"
+            ],
+            "location": {
+              "geojson": "location",
+              "latitude": "latitude",
+              "longitude": "longitude",
+              "mode": "geojson"
+            },
+            "name": "OffStreetParking",
+            "query": "A",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          },
+          {
+            "config": {
+              "cluster": true,
+              "clusterDistance": 20,
+              "clusterMinDistance": 0,
+              "clusterValue": "sum",
+              "color": {
+                "fixed": "red"
+              },
+              "enableGradient": false,
+              "enableShadow": false,
+              "fillOpacity": 0.4,
+              "iconSize": 20,
+              "pinShape": "marker",
+              "selectIcon": "fa-battery-quarter",
+              "shape": "circle",
+              "showLegend": true,
+              "showPin": true,
+              "size": {
+                "field": "availablespotnumber",
+                "fixed": 5,
+                "max": 15,
+                "min": 2
+              }
+            },
+            "displayProperties": [
+              "availablespotnumber"
+            ],
+            "location": {
+              "mode": "coords"
+            },
+            "name": "2nd layer",
+            "popup": {
+              "time": "time",
+              "title": "id"
+            },
+            "query": "B",
+            "timeField": "time_index",
+            "titleField": "entity_id",
+            "type": "markers"
+          }
+        ],
+        "view": {
+          "id": "auto",
+          "lat": 47.385221,
+          "lon": 8.544864,
+          "zoom": 12
+        }
+      },
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'OffStreetParking'\nORDER BY 1",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'OffStreetParking'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        },
+        {
+          "format": "table",
+          "group": [],
+          "groupByAliases": [
+            "type"
+          ],
+          "groupByColumns": [
+            "entity_type"
+          ],
+          "hide": false,
+          "metricAggs": [
+            {
+              "alias": "id",
+              "column": "entity_id",
+              "type": "raw"
+            },
+            {
+              "alias": "value",
+              "column": "availablespotnumber",
+              "type": "raw"
+            },
+            {
+              "alias": "geojson",
+              "column": "location",
+              "type": "raw"
+            },
+            {
+              "alias": "created_at",
+              "column": "time_index",
+              "type": "raw"
+            }
+          ],
+          "metricColumn": "none",
+          "queryType": "randomWalk",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  time_index AS \"time\",\n  availablespotnumber AS \"availablespotnumber\",\n  longitude(location_centroid) AS \"longitude\",\n  latitude(location_centroid) AS \"latitude\",\n  entity_id,\n  time_index,\n  entity_type,\n  location\nFROM doc.example\nWHERE\n  $__timeFilter(time_index) AND\n  entity_type = 'EVChargingStation'\nORDER BY 1",
+          "refId": "B",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "availablespotnumber"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "longitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "latitude(location_centroid)"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_id"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "time_index"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "entity_type"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "location"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "doc.example",
+          "timeColumn": "time_index",
+          "timeColumnType": null,
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": null,
+              "name": "",
+              "params": [
+                "entity_type",
+                "=",
+                "'EVChargingStation'"
+              ],
+              "type": "expression"
+            }
+          ],
+          "whereClauses": []
+        }
+      ],
+      "title": "Demo 1",
+      "type": "orchestracities-map-panel"
     }
+  ],
+  "refresh": "",
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5y",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Map Dashboard",
+  "uid": "QFqeHd57z"
 }

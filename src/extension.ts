@@ -33,7 +33,7 @@ export interface ExtendFrameGeometrySource {
   geojson?: string;
 }
 
-// eslint-disable-next-line
+ 
 export const ExtendFrameGeometrySourceMode = {
   ...GeojsonFrameGeometrySourceMode,
 };

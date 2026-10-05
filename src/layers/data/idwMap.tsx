@@ -52,7 +52,7 @@ export const idwmapLayer: ExtendMapLayerRegistryItem<IdwMapConfig> = {
 
     // Create a new IDW source
     // Weight function takes a feature as attribute and returns a normalized weight value
-    var idw = new IDW({
+    let idw = new IDW({
       // Source that contains the data
       source: source,
       scale: config.scale,

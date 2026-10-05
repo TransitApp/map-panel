@@ -33,7 +33,7 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
         : [DEFAULT_BASEMAP_CONFIG.type],
       filter
     );
-  }, [options?.type, filter]);
+  }, [options, filter]);
 
   // The options change with each layer type
   const optionsEditorBuilder = useMemo(() => {
@@ -117,7 +117,7 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
             noFieldsMessage: 'No strings fields found',
           },
           showIf: (opts) => opts.location?.mode === ExtendFrameGeometrySourceMode.Geohash,
-          // eslint-disable-next-line react/display-name
+           
           // info: (props) => <div>HELLO</div>,
         })
         .addFieldNamePicker({
