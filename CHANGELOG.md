@@ -12,6 +12,11 @@
 - Replace the deprecated `field.values.get(i)` Vector shim with array indexing
 - Provision data sources and example dashboards from `provisioning/` instead of
   the `set-up-grafana.sh` curl script
+- Add an API key option to the CARTO base layer. CARTO now requires one on every
+  `basemaps.cartocdn.com` request and otherwise serves an "API KEY REQUIRED"
+  watermark tile
+- Switch the example dashboards to the Open Street Map base layer, so they render
+  without a CARTO API key
 
 ## v1.4.5
 - Support data frames resulting from transformations (#77)

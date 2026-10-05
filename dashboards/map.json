@@ -61,8 +61,8 @@
       "maxDataPoints": 1,
       "options": {
         "basemap": {
-          "config": {},
-          "type": "default"
+          "type": "osm-standard",
+          "config": {}
         },
         "controls": {
           "mouseWheelZoom": true,
@@ -476,8 +476,8 @@
       "maxDataPoints": 1,
       "options": {
         "basemap": {
-          "config": {},
-          "type": "default"
+          "type": "osm-standard",
+          "config": {}
         },
         "controls": {
           "mouseWheelZoom": true,
@@ -892,8 +892,8 @@
       "maxDataPoints": 1,
       "options": {
         "basemap": {
-          "config": {},
-          "type": "default"
+          "type": "osm-standard",
+          "config": {}
         },
         "controls": {
           "mouseWheelZoom": true,
@@ -1307,8 +1307,8 @@
       "maxDataPoints": 1,
       "options": {
         "basemap": {
-          "config": {},
-          "type": "default"
+          "type": "osm-standard",
+          "config": {}
         },
         "controls": {
           "mouseWheelZoom": true,
