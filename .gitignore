@@ -51,3 +51,7 @@ plugin-validator
 
 .eslintcache
 junit.xml
+
+# Machine-local Grafana provisioning, e.g. data sources with real credentials
+provisioning/**/*.local.yaml
+provisioning/**/*.local.yml

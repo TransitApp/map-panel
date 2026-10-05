@@ -74,6 +74,11 @@ npm run test:ci     # jest, single run
    Data sources and the example dashboards are provisioned automatically from
    `provisioning/` and `dashboards/`, so there is no manual set-up step.
 
+   To add data sources of your own, such as ones with real credentials, put
+   them in a file ending in `.local.yaml` under `provisioning/datasources/`.
+   Grafana loads it with the others, and git ignores it, so it is never
+   committed. It needs the usual `apiVersion: 1` and `datasources:` header.
+
 4. After changing code, rebuild and restart Grafana
 
     ```bash
