@@ -1,6 +1,11 @@
 # Changelog
 
 ## v1.5.0
+- Reorder data layers by dragging the grip next to each one in the panel editor
+  (keyboard: focus the grip, Space to lift, arrow keys to move, Space to drop).
+  The list now shows the topmost map layer first, like the core Geomap panel
+- Keep each data layer's expanded/collapsed state with that layer; it used to be
+  tied to the row position
 - Update to the current Grafana plugin toolchain: `@grafana/toolkit` is replaced
   by the `@grafana/create-plugin` scaffolding (webpack 5 + SWC, ESLint 9, jest 29)
 - Support Grafana 12.3+ (built against the Grafana 13 frontend packages)
