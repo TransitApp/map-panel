@@ -67,9 +67,11 @@ export const DataLayersEditor: React.FC<StandardEditorProps<ExtendMapLayerOption
     setKeys(layerKeys);
   }
 
+  // The button sits below the list, so the new layer goes at the bottom of the
+  // list, next to it. That is the start of render order: drawn under the rest.
   const onAddLayer = () => {
-    setKeys([...layerKeys, newLayerKey()]);
-    onChange([...layers, _.cloneDeep(defaultMarkersConfig)]);
+    setKeys([newLayerKey(), ...layerKeys]);
+    onChange([_.cloneDeep(defaultMarkersConfig), ...layers]);
   };
 
   const onDeleteLayer = (index: number) => {
@@ -95,11 +97,6 @@ export const DataLayersEditor: React.FC<StandardEditorProps<ExtendMapLayerOption
 
   return (
     <>
-      <div className="data-layer-add">
-        <ToolbarButton icon="plus" tooltip="add new layer" variant="primary" key="Add" onClick={onAddLayer}>
-          Add Layer
-        </ToolbarButton>
-      </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="data-layers">
           {(droppable) => (
@@ -128,6 +125,11 @@ export const DataLayersEditor: React.FC<StandardEditorProps<ExtendMapLayerOption
           )}
         </Droppable>
       </DragDropContext>
+      <div className="data-layer-add">
+        <ToolbarButton icon="plus" tooltip="add new layer" variant="primary" key="Add" onClick={onAddLayer}>
+          Add Layer
+        </ToolbarButton>
+      </div>
     </>
   );
 };

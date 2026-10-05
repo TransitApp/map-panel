@@ -140,6 +140,18 @@ describe('DataLayersEditor', () => {
     expect(screen.getByText('Unnamed layer')).toBeInTheDocument();
   });
 
+  it('adds a layer at the bottom of the list, next to the button below it', () => {
+    render(<Harness initial={[A, B, C]} />);
+    const button = screen.getByRole('button', { name: 'add new layer' });
+    const grips = screen.getAllByRole('button', { name: /^Drag to reorder/ });
+    expect(grips.at(-1)!.compareDocumentPosition(button) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+
+    fireEvent.click(button);
+    // Bottom of the list is the start of render order: drawn under the others.
+    expect(lastNames()).toEqual([undefined, 'A', 'B', 'C']);
+    expect(listedLabels().at(-1)).toBe('Drag to reorder Unnamed layer');
+  });
+
   it('removes a layer from its row', () => {
     render(<Harness initial={[A, B, C]} />);
     fireEvent.click(screen.getByRole('button', { name: 'Remove B' }));

@@ -14,7 +14,7 @@ export const DEFAULT_BASEMAP_CONFIG: ExtendMapLayerOptions = {
 // Default base layer depending on the server setting
 export const defaultBaseLayer: ExtendMapLayerRegistryItem = {
   id: DEFAULT_BASEMAP_CONFIG.type,
-  name: 'Default base layer',
+  name: 'Default basemap',
   isBaseMap: true,
 
   create: (map: Map, options: ExtendMapLayerOptions, theme: GrafanaTheme2) => {

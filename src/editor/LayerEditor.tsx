@@ -55,13 +55,8 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
     }
 
     if (layer.showLocation) {
+      // The name is edited inline in the layer's row (DataLayersEditor).
       builder
-        .addTextInput({
-          path: 'name',
-          name: 'Name',
-          description: 'Layer name',
-          settings: {},
-        })
         .addCustomEditor({
           id: 'query',
           path: 'query',

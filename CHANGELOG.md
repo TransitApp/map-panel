@@ -1,6 +1,11 @@
 # Changelog
 
 ## v1.5.0
+- Rename the "Base layer" and "Data layer" editor sections to "Basemap" and
+  "Data layers"
+- The Add Layer button sits below the layer list and adds the new layer at the
+  bottom of the list, so it is drawn beneath the existing layers
+- Layer names are edited inline only; the duplicate Name field is gone
 - Data layer rows are styled like Grafana's query rows: a lighter header with
   the layer name (click to rename inline; Enter saves, Escape cancels), the layer
   type, an inline delete button and the drag grip on the right
