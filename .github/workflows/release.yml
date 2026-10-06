@@ -1,28 +1,84 @@
-# This GitHub Action automates the process of building Grafana plugins.
-# (For more information, see https://github.com/grafana/plugin-actions/blob/main/build-plugin/README.md)
+# Builds the plugin on a version tag and publishes it as a GitHub release, with
+# the zip that Grafana installs (see the Helm example in the README).
+#
+# This deliberately does not use grafana/plugin-actions/build-plugin. That
+# action runs Grafana's catalog-submission validator as a hard gate: it requires
+# the plugin ID's prefix to be a registered Grafana Cloud account, and it fails on
+# any high-severity advisory in package-lock.json, including development-only
+# tools that never reach the plugin bundle. This plugin is installed directly
+# rather than published to the catalog, so those rules do not apply. Grafana's
+# plugin.json check still runs in CI. If the plugin is ever submitted to the
+# catalog, switch back to build-plugin.
 name: Release
 
 on:
   push:
     tags:
-      - 'v*' # Run workflow on version tags, e.g. v1.0.0.
+      - 'v*' # e.g. v2.0.0
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   release:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to create the release
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
-      - uses: grafana/plugin-actions/build-plugin@build-plugin/v1.2.0
-        # Uncomment to enable plugin signing
-        # (For more info on how to generate the access policy token see
-        # https://grafana.com/developers/plugin-tools/publish-a-plugin/sign-a-plugin#generate-an-access-policy-token)
-        # with:
-        #   # Make sure to save the token in your repository secrets
-        #   policy_token: ${{ secrets.GRAFANA_ACCESS_POLICY_TOKEN }}
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check types
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Unit tests
+        run: npm run test:ci
+      - name: Build frontend
+        run: npm run build
+
+      - name: Check the tag matches the plugin version
+        id: metadata
+        run: |
+          PLUGIN_ID=$(jq -r .id dist/plugin.json)
+          PLUGIN_VERSION=$(jq -r .info.version dist/plugin.json)
+          if [ "v${PLUGIN_VERSION}" != "${GITHUB_REF_NAME}" ]; then
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match the version in package.json (${PLUGIN_VERSION})"
+            exit 1
+          fi
+          echo "plugin-id=${PLUGIN_ID}" >> "$GITHUB_OUTPUT"
+          echo "archive=${PLUGIN_ID}-${PLUGIN_VERSION}.zip" >> "$GITHUB_OUTPUT"
+
+      - name: Package plugin
+        run: |
+          # Grafana expects the zip to hold a single folder named after the plugin ID
+          mv dist "${PLUGIN_ID}"
+          zip -qr "${ARCHIVE}" "${PLUGIN_ID}"
+          sha1sum "${ARCHIVE}" > "${ARCHIVE}.sha1"
+        env:
+          PLUGIN_ID: ${{ steps.metadata.outputs.plugin-id }}
+          ARCHIVE: ${{ steps.metadata.outputs.archive }}
+
+      - name: Release notes from the changelog
+        # The first "## " section of CHANGELOG.md, i.e. the latest version's entry
+        run: awk '/^## /{n++} n==1' CHANGELOG.md > release-notes.md
+
+      - name: Create release
+        run: |
+          gh release create "${GITHUB_REF_NAME}" "${ARCHIVE}" "${ARCHIVE}.sha1" \
+            --verify-tag \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file release-notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARCHIVE: ${{ steps.metadata.outputs.archive }}

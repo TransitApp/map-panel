@@ -5,7 +5,7 @@
 > to its authors. That project is no longer maintained. TransitApp has modified
 > this fork since October 2026: it runs on current Grafana (12.3 and later) and
 > adds layer reordering, per-layer query handling and other fixes; see the
-> [changelog](CHANGELOG.md). It remains licensed under the [AGPL-3.0](LICENSE).
+> [changelog](https://github.com/TransitApp/map-panel/blob/main/CHANGELOG.md). It remains licensed under the [AGPL-3.0](https://github.com/TransitApp/map-panel/blob/main/LICENSE).
 >
 > **Maintenance:** TransitApp maintains this fork for its own use. Issues and pull
 > requests are welcome and handled on a best-effort basis.
@@ -20,9 +20,9 @@ panel with several functionalities:
 * A new map layer leveraging [Inverse distance weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting)
   (IDW) interpolation for scattered data points using Shepard's method.
 
-![Marker layer](https://github.com/TransitApp/map-panel/raw/master/example.png)
+![Marker layer](https://github.com/TransitApp/map-panel/raw/main/example.png)
 
-![IDW layer](https://github.com/TransitApp/map-panel/raw/master/example4.png)
+![IDW layer](https://github.com/TransitApp/map-panel/raw/main/example4.png)
 
 
 New customization options available for the markers layer:
@@ -31,7 +31,7 @@ New customization options available for the markers layer:
 * A fully customizable pin with the possibility to change colors, shapes and sizes
 * The possibility to select which properties to be displayed on the popup
 
-![Marker layer options](https://github.com/TransitApp/map-panel/raw/master/example2.png)
+![Marker layer options](https://github.com/TransitApp/map-panel/raw/main/example2.png)
 
 Cluster options:
 
@@ -52,7 +52,7 @@ Popup Options:
 * Display the Timestamp
 * Selectable properties
 
-![Marker layer options](https://github.com/TransitApp/map-panel/raw/master/example3.png)
+![Marker layer options](https://github.com/TransitApp/map-panel/raw/main/example3.png)
 
 Options available for the IDW layer:
 
@@ -70,9 +70,30 @@ Pupup Options:
 * Selectable properties
 
 
-![Marker layer options](https://github.com/TransitApp/map-panel/raw/master/example5.png)
+![Marker layer options](https://github.com/TransitApp/map-panel/raw/main/example5.png)
 
 It requires Grafana 12.3 or later.
+
+## Installation
+
+The plugin is not in Grafana's plugin catalog and is not signed. Grafana
+installs it from the zip attached to each
+[GitHub release](https://github.com/TransitApp/map-panel/releases), and has to be
+told to allow it. With the
+[Grafana Helm chart](https://github.com/grafana-community/helm-charts/tree/main/charts/grafana):
+
+```yaml
+plugins:
+  - transitapp-map-panel@2.0.0@https://github.com/TransitApp/map-panel/releases/download/v2.0.0/transitapp-map-panel-2.0.0.zip
+grafana.ini:
+  plugins:
+    allow_loading_unsigned_plugins: transitapp-map-panel
+```
+
+The version in the entry decides which release is installed; change it to
+upgrade. Without Helm, set `GF_PLUGINS_PREINSTALL_SYNC` to the same
+`id@version@url` value and `GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS` to the
+plugin ID.
 
 ## Migrating from the Orchestra Cities Map Panel
 
@@ -114,4 +135,4 @@ For more information about panels, refer to the documentation on [Panels](https:
 
 ## Set up dev environment
 
-See [Contributing](CONTRIBUTING.md).
+See [Contributing](https://github.com/TransitApp/map-panel/blob/main/CONTRIBUTING.md).
