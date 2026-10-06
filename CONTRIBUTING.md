@@ -106,14 +106,16 @@ for the supported ways to customise it.
 
 ## Releasing a new version
 
-1. Update the CHANGELOG.md document to include changes of the new release
-1. Bump `version` in `package.json` to match
-1. Tag the master with the new version:
+1. Add a `## vX.Y.Z` section at the top of CHANGELOG.md for the new release
+1. Bump `version` in `package.json` to match (`npm version --no-git-tag-version X.Y.Z`)
+1. Merge to `main`, then tag that commit:
     ```sh
-    git tag v2.0.0
-    git push origin v2.0.0
+    git tag vX.Y.Z
+    git push origin vX.Y.Z
     ```
-1. Complete the release information in github.
+1. The Release workflow builds, tests and packages the plugin, then publishes a
+   GitHub release with the zip attached and the changelog section as its notes.
+   It fails if the tag doesn't match the version in `package.json`.
 
 ## Notes
 
