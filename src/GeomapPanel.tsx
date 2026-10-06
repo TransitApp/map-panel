@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { DEFAULT_BASEMAP_CONFIG, geomapLayerRegistry, defaultBaseLayer } from './layers/registry';
+import { findRenamedQueries, retargetRenamedQueries } from './layers/data/utils';
 import { Map, MapBrowserEvent, View } from 'ol';
 import Attribution from 'ol/control/Attribution';
 import Zoom from 'ol/control/Zoom';
@@ -98,6 +99,17 @@ export class GeomapPanel extends Component<Props, State> {
     return true; // always?
   }
 
+  componentDidUpdate(prevProps: Props) {
+    // Layers select their query by refId, so a renamed query would leave them
+    // pointing at a refId that no longer exists. Follow the rename and save it.
+    // This runs after commit because onOptionsChange updates Grafana's state.
+    const renames = findRenamedQueries(prevProps.data.request?.targets, this.props.data.request?.targets);
+    const layers = retargetRenamedQueries(this.props.options.layers, renames);
+    if (layers) {
+      this.props.onOptionsChange({ ...this.props.options, layers });
+    }
+  }
+
   /**
    * Called when the panel options change
    */
@@ -137,12 +149,12 @@ export class GeomapPanel extends Component<Props, State> {
     if (this.props.options.view.id === MapCenterID.Auto && this.map) {
       let extent = createEmpty();
       const layers = this.map.getLayers().getArray();
-      for (var layer of layers) {
+      for (let layer of layers) {
         if (layer instanceof VectorLayer) {
           let source = layer.getSource();
           if (source !== undefined && source instanceof Vector) {
             let features = source.getFeatures();
-            for (var feature of features) {
+            for (let feature of features) {
               let geo = feature.getGeometry();
               if (geo) {
                 extend(extent, geo.getExtent());
@@ -190,12 +202,12 @@ export class GeomapPanel extends Component<Props, State> {
 
     // Tooltip listener
     this.map.on('pointermove', this.pointerMoveListener);
-    this.map.getViewport().addEventListener('mouseout', (evt) => {
+    this.map!.getViewport()?.addEventListener('mouseout', () => {
       this.props.eventBus.publish(new DataHoverClearEvent());
     });
   };
 
-  pointerMoveListener = (evt: MapBrowserEvent<UIEvent>) => {
+  pointerMoveListener = (evt: MapBrowserEvent) => {
     if (!this.map) {
       return;
     }
@@ -231,7 +243,11 @@ export class GeomapPanel extends Component<Props, State> {
             let found = frame.fields.filter((obj: { name: string }) => {
               return obj.name === thisLayerName;
             });
-            propsToShow.push(found[0]);
+            // A configured field can be missing from the frame, e.g. after the
+            // layer's query changed or the field was renamed. Skip it.
+            if (found.length) {
+              propsToShow.push(found[0]);
+            }
           }
           hoverPayload.icon = thisLayer.icon ? thisLayer.icon : '';
           hoverPayload.data = ttip.data = frame as DataFrame;
@@ -392,15 +408,15 @@ export class GeomapPanel extends Component<Props, State> {
 
     const map = this.map;
 
-    var zoomCluster = function (pixel: number[]) {
-      var feature = map.forEachFeatureAtPixel(pixel, function (feature) {
+    let zoomCluster = function (pixel: number[]) {
+      let feature = map.forEachFeatureAtPixel(pixel, function (feature) {
         return feature;
       });
 
       if (feature) {
-        var features = feature.get('features');
+        let features = feature.get('features');
         if (features && features.length > 1) {
-          var extent = createEmpty();
+          let extent = createEmpty();
           features.forEach(function (f: any) {
             extend(extent, f.getGeometry().getExtent());
           });

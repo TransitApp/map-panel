@@ -1,5 +1,24 @@
 # Changelog
 
+## v2.0.0
+
+TransitApp's fork of the Orchestra Cities Map Panel, which is no longer
+maintained. Versions up to 1.4.5 below are the original project's.
+Modifications by TransitApp start here, in October 2026.
+
+- **Breaking:** the plugin ID changed from `orchestracities-map-panel` to
+  `transitapp-map-panel`. Panel options are unchanged; to migrate a dashboard,
+  change the `type` of each map panel to `transitapp-map-panel`
+- Renamed plugin "Multi-Layer Map"
+- Updated "Data layers" editor section to use drag-and-drop reordering and allow
+  for inline renaming.
+- Data layers ordering inverted: the first layer in the list is drawn on top.
+- Improved handling of renamed queries: data layers now try to follow the renamed
+  query.
+- Updated dependencies, including migrating to a more recent version of the
+  Grafana plugin harness.
+- Add an API key configuration to CARTO's basemap, and switch the default to OSM.
+
 ## v1.4.5
 - Support data frames resulting from transformations (#77)
 - Support value mapping colors (#75)

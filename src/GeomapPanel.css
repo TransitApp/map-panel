@@ -28,13 +28,6 @@
 
 .data-layer-add { 
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-bottom: 10px;
-}
-
-.data-layer-remove { 
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-  margin-top: 10px;
 }

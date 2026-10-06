@@ -20,16 +20,16 @@ describe('Placename lookups', () => {
     const gaz = await getGazetteer('countries');
     expect(gaz.error).toBeUndefined();
     expect(gaz.find('US')).toMatchInlineSnapshot(`
-      Object {
-        "coords": Array [
-          -95.712891,
-          37.09024,
-        ],
-        "props": Object {
-          "name": "United States",
-        },
-      }
-    `);
+{
+  "coords": [
+    -95.712891,
+    37.09024,
+  ],
+  "props": {
+    "name": "United States",
+  },
+}
+`);
     // Items with 'keys' should get allow looking them up
     expect(gaz.find('US')).toEqual(gaz.find('USA'));
   });

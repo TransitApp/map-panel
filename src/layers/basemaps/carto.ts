@@ -15,6 +15,7 @@ export enum LayerTheme {
 export interface CartoConfig {
   theme?: LayerTheme;
   showLabels?: boolean;
+  apiKey?: string;
 }
 
 export const defaultCartoConfig: CartoConfig = {
@@ -44,10 +45,16 @@ export const carto: ExtendMapLayerRegistryItem<CartoConfig> = {
       } else {
         style += '_nolabels';
       }
+      // CARTO requires an API key on every basemaps.cartocdn.com request. Without
+      // one the CDN still answers 200, but with an "API KEY REQUIRED" placeholder
+      // tile. See https://carto.com/basemaps/apikey
+      const key = cfg.apiKey?.trim();
+      const query = key ? `?key=${encodeURIComponent(key)}` : '';
+
       return new TileLayer({
         source: new XYZ({
           attributions: `<a href="https://carto.com/attribution/">© CARTO</a>`,
-          url: `https://{1-4}.basemaps.cartocdn.com/${style}/{z}/{x}/{y}.png`,
+          url: `https://{1-4}.basemaps.cartocdn.com/${style}/{z}/{x}/{y}.png${query}`,
         }),
       });
     },
@@ -72,6 +79,15 @@ export const carto: ExtendMapLayerRegistryItem<CartoConfig> = {
         name: 'Show labels',
         description: '',
         defaultValue: defaultCartoConfig.showLabels,
+      })
+      .addTextInput({
+        path: 'config.apiKey',
+        name: 'API key',
+        description:
+          'Required by CARTO. Without it tiles render an "API KEY REQUIRED" watermark. Get one at carto.com/basemaps/apikey. Stored in the dashboard and sent with every tile request.',
+        settings: {
+          placeholder: 'CARTO basemap API key',
+        },
       });
   },
 };

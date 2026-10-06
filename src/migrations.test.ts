@@ -18,52 +18,52 @@ describe('Worldmap Migrations', () => {
     const panel = {} as PanelModel;
     panel.options = mapPanelChangedHandler(panel, 'grafana-worldmap-panel', old, prevFieldConfig);
     expect(panel).toMatchInlineSnapshot(`
-      Object {
-        "fieldConfig": Object {
-          "defaults": Object {
-            "decimals": 3,
-            "thresholds": Object {
-              "mode": "absolute",
-              "steps": Array [
-                Object {
-                  "color": "#37872D",
-                  "value": -Infinity,
-                },
-                Object {
-                  "color": "#E0B400",
-                  "value": 0,
-                },
-                Object {
-                  "color": "#C4162A",
-                  "value": 50,
-                },
-                Object {
-                  "color": "#8F3BB8",
-                  "value": 100,
-                },
-              ],
-            },
+{
+  "fieldConfig": {
+    "defaults": {
+      "decimals": 3,
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "#37872D",
+            "value": -Infinity,
           },
-          "overrides": Array [],
-        },
-        "options": Object {
-          "basemap": Object {
-            "type": "default",
+          {
+            "color": "#E0B400",
+            "value": 0,
           },
-          "controls": Object {
-            "mouseWheelZoom": true,
-            "showZoom": true,
+          {
+            "color": "#C4162A",
+            "value": 50,
           },
-          "layers": Array [],
-          "view": Object {
-            "id": "europe",
-            "lat": 46,
-            "lon": 14,
-            "zoom": 6,
+          {
+            "color": "#8F3BB8",
+            "value": 100,
           },
-        },
-      }
-    `);
+        ],
+      },
+    },
+    "overrides": [],
+  },
+  "options": {
+    "basemap": {
+      "type": "default",
+    },
+    "controls": {
+      "mouseWheelZoom": true,
+      "showZoom": true,
+    },
+    "layers": [],
+    "view": {
+      "id": "europe",
+      "lat": 46,
+      "lon": 14,
+      "zoom": 6,
+    },
+  },
+}
+`);
   });
 });
 

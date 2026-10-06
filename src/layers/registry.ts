@@ -1,6 +1,6 @@
 import { Registry, GrafanaTheme2 } from '@grafana/data';
 import Map from 'ol/Map';
-import { carto } from './basemaps/carto';
+import { standard as osmStandard } from './basemaps/osm';
 import { config } from '../config';
 import { basemapLayers } from './basemaps';
 import { dataLayers } from './data';
@@ -14,7 +14,7 @@ export const DEFAULT_BASEMAP_CONFIG: ExtendMapLayerOptions = {
 // Default base layer depending on the server setting
 export const defaultBaseLayer: ExtendMapLayerRegistryItem = {
   id: DEFAULT_BASEMAP_CONFIG.type,
-  name: 'Default base layer',
+  name: 'Default basemap',
   isBaseMap: true,
 
   create: (map: Map, options: ExtendMapLayerOptions, theme: GrafanaTheme2) => {
@@ -27,8 +27,11 @@ export const defaultBaseLayer: ExtendMapLayerRegistryItem = {
       return layer.create(map, config.geomapDefaultBaseLayerConfig!, theme);
     }
 
-    // For now use carto as our default basemap
-    return carto.create(map, options, theme);
+    // Open Street Map is the default because it needs no credentials. CARTO,
+    // the previous default, now requires an API key on every tile request and
+    // otherwise serves an "API KEY REQUIRED" placeholder; it has no options UI
+    // here to enter one, so select the CARTO base layer directly to use it.
+    return osmStandard.create(map, options, theme);
   },
 };
 

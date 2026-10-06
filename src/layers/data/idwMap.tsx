@@ -8,6 +8,7 @@ import { FrameVectorSource } from '../../utils/frameVectorSource';
 import { ScaleDimensionConfig, getScaledDimension } from '../../dimensions';
 import { ScaleDimensionEditor } from '../../dimensions/editors';
 import { ExtendMapLayerRegistryItem, ExtendMapLayerOptions } from 'extension';
+import { getLayerFrame } from './utils';
 import { BaseLayerOptions, GroupLayerOptions } from 'ol-layerswitcher';
 import { Stroke, Style, Text } from 'ol/style';
 
@@ -52,7 +53,7 @@ export const idwmapLayer: ExtendMapLayerRegistryItem<IdwMapConfig> = {
 
     // Create a new IDW source
     // Weight function takes a feature as attribute and returns a normalized weight value
-    var idw = new IDW({
+    let idw = new IDW({
       // Source that contains the data
       source: source,
       scale: config.scale,
@@ -99,7 +100,7 @@ export const idwmapLayer: ExtendMapLayerRegistryItem<IdwMapConfig> = {
     return {
       init: () => vectorLayer,
       update: (data: PanelData) => {
-        const frame = data.series[0];
+        const frame = getLayerFrame(data.series, options.query);
         if (!frame) {
           return;
         }

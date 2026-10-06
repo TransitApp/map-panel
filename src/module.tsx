@@ -32,19 +32,19 @@ export const plugin = new PanelPlugin<GeomapPanelOptions>(GeomapPanel)
     });
 
     builder.addCustomEditor({
-      category: ['Base layer'],
+      category: ['Basemap'],
       id: 'basemap',
       path: 'basemap',
-      name: 'Base layer',
+      name: 'Basemap',
       editor: BaseLayerEditor,
       defaultValue: DEFAULT_BASEMAP_CONFIG,
     });
 
     builder.addCustomEditor({
-      category: ['Data layer'],
+      category: ['Data layers'],
       id: 'layers',
       path: 'layers',
-      name: 'Data layer',
+      name: 'Data layers',
       editor: DataLayersEditor,
     });
 

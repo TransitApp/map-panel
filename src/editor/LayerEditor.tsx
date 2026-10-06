@@ -8,6 +8,7 @@ import {
   getFieldDisplayName,
   FieldType,
   Field,
+  SelectableValue,
 } from '@grafana/data';
 import { DEFAULT_BASEMAP_CONFIG, geomapLayerRegistry } from '../layers/registry';
 import { OptionsPaneCategoryDescriptor } from './PanelEditor/OptionsPaneCategoryDescriptor';
@@ -16,6 +17,7 @@ import { fillOptionsPaneItems } from './PanelEditor/getVizualizationOptions';
 import { GazetteerPathEditor } from './GazetteerPathEditor';
 import { ExtendMapLayerRegistryItem, ExtendMapLayerOptions, ExtendFrameGeometrySourceMode } from '../extension';
 import { FrameSelectionEditor } from './FrameSelectionEditor';
+import { getLayerFrame } from '../layers/data/utils';
 
 export interface LayerEditorProps<TConfig = any> {
   options?: ExtendMapLayerOptions<TConfig>;
@@ -33,7 +35,7 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
         : [DEFAULT_BASEMAP_CONFIG.type],
       filter
     );
-  }, [options?.type, filter]);
+  }, [options, filter]);
 
   // The options change with each layer type
   const optionsEditorBuilder = useMemo(() => {
@@ -53,13 +55,8 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
     }
 
     if (layer.showLocation) {
+      // The name is edited inline in the layer's row (DataLayersEditor).
       builder
-        .addTextInput({
-          path: 'name',
-          name: 'Name',
-          description: 'Layer name',
-          settings: {},
-        })
         .addCustomEditor({
           id: 'query',
           path: 'query',
@@ -117,7 +114,7 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
             noFieldsMessage: 'No strings fields found',
           },
           showIf: (opts) => opts.location?.mode === ExtendFrameGeometrySourceMode.Geohash,
-          // eslint-disable-next-line react/display-name
+
           // info: (props) => <div>HELLO</div>,
         })
         .addFieldNamePicker({
@@ -161,28 +158,12 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
             options: [],
             placeholder: 'All Properties',
             getOptions: async (context: FieldOverrideContext) => {
-              const options = [];
-              if (context && context.data && context.data.length > 0 && context.options && context.options.query && context.options.query.options) {
-                const frames = context.data;
-                for (let i = 0; i < frames.length; i++) {
-                  if (frames[i].refId && frames[i].refId === context.options.query.options) {
-                    const frame = context.data[i];
-                    for (const field of frame.fields) {
-                      const name = getFieldDisplayName(field, frame, context.data);
-                      const value = field.name;
-                      options.push({ value, label: name } as any);
-                    }
-                  }
-                }
-              }
-              else if (context && context.data && context.data.length > 0 && context.data[0].meta) {
-                const frames = context.data;
-                for (let i = 0; i < frames.length; i++) {
-                  const frame = context.data[i];
-                  for (const field of frame.fields) {
-                    const name = getFieldDisplayName(field, frame, context.data);
-                    const value = field.name;
-                    options.push({ value, label: name } as any);
+              // context.data only holds the frame this layer draws, see below
+              const options: Array<SelectableValue<string>> = [];
+              for (const frame of context.data) {
+                for (const field of frame.fields) {
+                  if (!options.some((option) => option.value === field.name)) {
+                    options.push({ value: field.name, label: getFieldDisplayName(field, frame, context.data) });
                   }
                 }
               }
@@ -214,10 +195,12 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
       title: 'Layer config',
     });
 
-    const context: StandardEditorContext<any> = {
-      data,
-      options: options,
-    };
+    // Field pickers offer only the fields of the frame this layer draws, so a
+    // layer cannot be set up with another query's fields. The query picker is
+    // the exception: it lists every query.
+    const allQueriesContext: StandardEditorContext<any> = { data, options };
+    const layerFrame = getLayerFrame(data, options?.query);
+    const layerContext: StandardEditorContext<any> = { data: layerFrame ? [layerFrame] : [], options };
 
     const currentOptions = { ...options, type: layer.id, config: { ...layer.defaultOptions, ...options?.config } };
 
@@ -239,7 +222,7 @@ export const LayerEditor: FC<LayerEditorProps> = ({ options, onChange, data, fil
       (path: string, value: any) => {
         onChange(setOptionImmutably(currentOptions, path, value) as any);
       },
-      context
+      (item) => (item.id === 'query' ? allQueriesContext : layerContext)
     );
 
     return (

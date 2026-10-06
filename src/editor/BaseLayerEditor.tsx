@@ -21,7 +21,7 @@ export const BaseLayerEditor: FC<StandardEditorProps<ExtendMapLayerOptions, any,
   context,
 }) => {
   if (config.geomapDisableCustomBaseLayer) {
-    return <div>The base layer is configured by the server admin.</div>;
+    return <div>The basemap is configured by the server admin.</div>;
   }
 
   return <LayerEditor options={value} data={context.data} onChange={onChange} filter={baseMapFilter} />;

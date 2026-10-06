@@ -87,7 +87,7 @@ export class NumberInput extends PureComponent<Props, State> {
     this.updateValueDebounced();
   };
 
-  onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       this.updateValue();
     }
@@ -105,7 +105,7 @@ export class NumberInput extends PureComponent<Props, State> {
         value={this.state.text}
         onChange={this.onChange}
         onBlur={this.updateValue}
-        onKeyPress={this.onKeyPress}
+        onKeyDown={this.onKeyDown}
         placeholder={this.props.placeholder}
       />
     );

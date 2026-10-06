@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 
 import {
   FrameMatcherID,
@@ -8,30 +8,9 @@ import {
   StandardEditorProps,
 } from '@grafana/data';
 import { Select } from '@grafana/ui';
+import { getSelectedRefId } from '../layers/data/utils';
 
-const recoverRefIdMissing = (
-  newRefIds: SelectableValue[],
-  oldRefIds: SelectableValue[],
-  previousValue: string | undefined
-): SelectableValue | undefined => {
-  if (!previousValue) {
-    return;
-  }
-  // Previously selected value is missing from the new list.
-  // Find the value that is in the new list but isn't in the old list
-  let changedTo = newRefIds.find((refId) => {
-    return !oldRefIds.some((refId2) => {
-      return refId === refId2;
-    });
-  });
-  if (changedTo) {
-    // Found the new value, we assume the old value changed to this one, so we'll use it
-    return changedTo;
-  }
-  return;
-};
-
-export const FrameSelectionEditor: FC<StandardEditorProps<MatcherConfig>> = ({ value, context, onChange, item }) => {
+export const FrameSelectionEditor: FC<StandardEditorProps<MatcherConfig>> = ({ value, context, onChange }) => {
   const listOfRefId = useMemo(() => {
     return context.data.map((f) => ({
       value: f.refId,
@@ -40,17 +19,22 @@ export const FrameSelectionEditor: FC<StandardEditorProps<MatcherConfig>> = ({ v
     }));
   }, [context.data]);
 
-  const [priorSelectionState, updatePriorSelectionState] = useState({
-    refIds: [] as SelectableValue[],
-    value: undefined as string | undefined,
-  });
+  const selectedRefId = getSelectedRefId(value);
 
-  const currentValue = useMemo(() => {
+  const currentValue = useMemo<SelectableValue<string> | undefined>(() => {
+    if (!selectedRefId) {
+      return undefined;
+    }
     return (
-      listOfRefId.find((refId) => refId.value === value?.options) ??
-      recoverRefIdMissing(listOfRefId, priorSelectionState.refIds, priorSelectionState.value)
+      listOfRefId.find((refId) => refId.value === selectedRefId) ?? {
+        // The selected query returned no frame: it failed, or was renamed or
+        // removed. Keep showing it, since the layer still uses it, and never
+        // swap in another query.
+        value: selectedRefId,
+        label: `Query: ${selectedRefId} (no data)`,
+      }
     );
-  }, [value, listOfRefId, priorSelectionState]);
+  }, [selectedRefId, listOfRefId]);
 
   const onFilterChange = useCallback(
     (v: SelectableValue<string>) => {
@@ -66,12 +50,6 @@ export const FrameSelectionEditor: FC<StandardEditorProps<MatcherConfig>> = ({ v
     [onChange]
   );
 
-  if (listOfRefId !== priorSelectionState.refIds || currentValue?.value !== priorSelectionState.value) {
-    updatePriorSelectionState({
-      refIds: listOfRefId,
-      value: currentValue?.value,
-    });
-  }
   return (
     <Select
       options={listOfRefId}
