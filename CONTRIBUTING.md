@@ -63,7 +63,7 @@ npm run test:ci     # jest, single run
     ```
 
     The Grafana version can be overridden, e.g.
-    `GRAFANA_VERSION=12.3.0 docker compose -p map-panel up -d`.
+    `GRAFANA_VERSION=13.3.0 docker compose -p map-panel up -d`.
 
 3. Import database
 
