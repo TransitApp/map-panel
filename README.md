@@ -3,7 +3,7 @@
 > **A fork of the [Orchestra Cities Map Panel](https://github.com/orchestracities/map-panel).**
 > The original plugin was written by Orchestra Cities, and all credit for it goes
 > to its authors. That project is no longer maintained. TransitApp has modified
-> this fork since October 2026: it runs on current Grafana (12.3 and later) and
+> this fork since October 2026: it runs on current Grafana (13.3 and later) and
 > adds layer reordering, per-layer query handling and other fixes; see the
 > [changelog](https://github.com/TransitApp/map-panel/blob/main/CHANGELOG.md). It remains licensed under the [AGPL-3.0](https://github.com/TransitApp/map-panel/blob/main/LICENSE).
 >
@@ -72,7 +72,7 @@ Pupup Options:
 
 ![Marker layer options](https://github.com/TransitApp/map-panel/raw/main/example5.png)
 
-It requires Grafana 12.3 or later.
+It requires Grafana 13.3 or later.
 
 ## Installation
 
